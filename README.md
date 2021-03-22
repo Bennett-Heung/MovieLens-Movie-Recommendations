@@ -174,7 +174,7 @@ This content-based filtering movie recommendaiton system is based on the relevan
 
 The movie recommendations are based on using the Genome data files - `genome-scores.csv` and `genome-tags.csv`. Note not all movies will be recommended: 23% of movies in Genome data are in `movies.csv`.
 
-Feature Engineering: 
+The feature engineering process involved distinguishing each movie by selecting only a range of top-ranked relevant tags. The figure below and the median relevnace - given the large range in relevance scores across each ranked tag (in the table below) - were analysed as reach the feature engineering decision here.  
 
 ![Selecting a top number of relevant tags](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/04_Genome_subset_tags.png)
 
@@ -355,4 +355,4 @@ For example, the top 20 recommendations for the movie 'Dumbo' from this recommen
 
 # Results
 
-From experimenting with each recommendation system, the recommendation system based on `tags.csv` provides the most appropriate results. These tags strike the most balance between having the least drawback in terms of data limilations and providing recommendations based on a user's inputted preference or taste. Note also that despite the quality of recommendations does come at the cost of requiring a significant amount of RAM to run this recommendation system, relative to the other recommendation systems built here. 
+From experimenting with each recommendation system, the recommendation system based on `tags.csv` provides the most appropriate results. These tags strike the most balance between having the least drawback in terms of data limilations and providing recommendations based on a user's inputted preference or taste. Note also that despite the quality of recommendations does come at the cost of requiring a significant amount of RAM to run this recommendation system, relative to the other recommendation systems built here. If memory is the issue for deploying, the altnerative recommendation systems using the Genome Tags and the baseline recommendation system are preferable.   
