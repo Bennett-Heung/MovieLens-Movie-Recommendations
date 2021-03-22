@@ -137,6 +137,7 @@ The user profile is based on the dot product of these ratings with the one-hot-e
 | Film-Noir          |              0 |
 | (no genres listed) |              0 |
 
+
 The recommendation scores are weighted sum of ratings, which are ordered to determine the movies to recommend based on a user's inputs. 
 
 The weighted sum of ratings are calculated from the dot product of the user profile (see example above) and the genres that are one-hot-encoded; and divided by the sum of the user profile (from the example above, 30). These are the **recommendation scores** for each movie in the data, which is sorted from 1 - movies that are to be most recommended based on the user inputs, and 0 - the movies to least recommend to the user. 
@@ -175,7 +176,8 @@ The movie recommendations are based on using the Genome data files - `genome-sco
 
 Feature Engineering: 
 
-<insert image> 
+![Selecting a top number of relevant tags](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/04_Genome_subset_tags.png)
+
 
 |   relevance_rank |   median_relevance |       diff |
 |-----------------:|-------------------:|-----------:|
@@ -350,5 +352,7 @@ For example, the top 20 recommendations for the movie 'Dumbo' from this recommen
 |  1839 |      2049 | Happiest Millionaire, The                       |     0.430089 |
 
 
-Results: 
-From experimenting with each recommendation system, the recommendation system based on `tags.csv` provides the most appropriate results. These tags strike the most balance between having the least drawback in terms of data limilations and providing recommendations based on a user's inputted preference or taste. Note also that despite the quality of recommendations does come at teh cost of requiring a significant amount of RAM to run this recommendation system, relative to the other recommendation systems built here. 
+
+# Results
+
+From experimenting with each recommendation system, the recommendation system based on `tags.csv` provides the most appropriate results. These tags strike the most balance between having the least drawback in terms of data limilations and providing recommendations based on a user's inputted preference or taste. Note also that despite the quality of recommendations does come at the cost of requiring a significant amount of RAM to run this recommendation system, relative to the other recommendation systems built here. 
