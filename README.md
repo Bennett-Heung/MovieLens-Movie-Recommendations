@@ -56,10 +56,76 @@ The following process the clean data are from the **'01_Data_Preparation'** note
 # Exploratory Data Analysis (EDA)
 The EDA is focused on the `movies.csv`, `ratings.csv` and `genome-scores.csv` data.
 
+![1EDA_genre_count](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/1EDA_genre_count.png)
 
+**Finding 1**
+Drama and Comedy are the most common genres found, followed by Thriller, Romance and Action.
 
+![2EDA_year_count](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/2EDA_year_count.png)
 
+**Finding 2**
+The number of movies have increased at an increasing rate over time. Note that the last dip is due to the incomplete year of 2018 in the data.
 
+![3EDA_genre_year_count](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/3EDA_genre_year_count.png)
+
+**Finding 3**
+As well as the abundance and growth in Drama and Comedy movies, there has also been significant growth of Thriller and Documentary movies in the last 30 years.
+
+![4EDA_year_genre](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/4EDA_year_genre.png)
+
+**Finding 4**
+The boxplot of each genre's distribution of ratings show higher median ratings for Drama, Crime, War, Mystery, Animation, IMAX, Film-Noir and Documentary movies, while Horror and (no genres listed) show a more likely tendency of lower ratings. The average ratings, as shown by the bar plot of average ratings for each genre, reflect these findings also.
+
+![5EDA_rating_genre](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/5EDA_rating_genre.png)
+
+**Finding 5**
+Film-Noir and War movies have the highest average rating; and Horror and '(no genres listed)' genres have the lowest average rating.
+
+![6EDA_rating_year_genre](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/6EDA_rating_year_genre.png)
+
+**Finding 6**
+* An upward trend in average ratings is noticed for movies released over the earlier half the twentieth century, and have marginally declined onwards for movies released later.
+
+* Post 1910, there are more noticeable average ratings across genres falling under the overall average ratings, particularly between 1920 and 1960. Post 1960, average ratings across genres have converged with the marginal overall decline in average ratings.
+
+![7EDA_genre_genome_corr](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/7EDA_genre_genome_corr.png)
+
+|    | genre              | most_corr_genre    |   corr_value |
+|---:|:-------------------|:-------------------|-------------:|
+|  0 | (no genres listed) | Drama              |     0.964824 |
+|  1 | Action             | Adventure          |     0.945753 |
+|  2 | Adventure          | Fantasy            |     0.961199 |
+|  3 | Animation          | Children           |     0.939709 |
+|  4 | Children           | Animation          |     0.939709 |
+|  5 | Comedy             | Romance            |     0.938233 |
+|  6 | Crime              | Thriller           |     0.959181 |
+|  7 | Documentary        | Drama              |     0.917415 |
+|  8 | Drama              | (no genres listed) |     0.964824 |
+|  9 | Fantasy            | Adventure          |     0.961199 |
+| 10 | Film-Noir          | Crime              |     0.873139 |
+| 11 | Horror             | Thriller           |     0.887839 |
+| 12 | IMAX               | Adventure          |     0.942178 |
+| 13 | Musical            | Comedy             |     0.885201 |
+| 14 | Mystery            | Thriller           |     0.96821  |
+| 15 | Romance            | Drama              |     0.946158 |
+| 16 | Sci-Fi             | Adventure          |     0.900086 |
+| 17 | Thriller           | Mystery            |     0.96821  |
+| 18 | War                | Drama              |     0.868225 |
+| 19 | Western            | Drama              |     0.874093 |
+
+**Finding 7**
+* The most correlated genre pairs (in order) are: Mystery and Thriller, Drama and (no genre listed), Fantasy and Adventure, and Crime and Thriller.
+* The most correlated genres are Drama, Adventure and Thriller.
+
+![8EDA_genre_relevance](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/8EDA_genre_relevance.png)
+
+**Finding 8**
+Relevances do not vary significantly across each genre - relevance of tags are approximately spread evenly across genres.
+
+![9EDA_relevance_rank](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/9EDA_relevance_rank.png)
+
+**Finding 9**
+The level of relevance for higher ranks of a tag is significantly higher than tags in the lower end of relevance, which are likely to not provide much information about movies.
 
 
 # Baseline Recommendations 
@@ -185,9 +251,9 @@ This content-based filtering movie recommendaiton system is based on the relevan
 
 The movie recommendations are based on movies from the Genome data files - `genome-scores.csv` and `genome-tags.csv`. Note that not all movies are recommended as these data files make up 23% of movies in the `movies.csv` data file, which contains the full comprehensive list of movies.
 
-The feature engineering process involved differentiating movies by a selection of top-ranked relevant tags. To determine the number of tags to consider, a similar to the elbow method on the median relevances were applied to indicate that the 20 most relevant tags were a sensible choice to characterise each movie. The figure and table below reflect the results that determined these steps.  
+The feature engineering process involved differentiating movies by a selection of top-ranked relevant tags. To determine the number of tags to consider, a similar to the elbow method on the median relevances were applied to indicate that the 20 most relevant tags were a sensible choice to characterise each movie. The figure of the top 100 relevance-ranked tags and the table of median relevances below reflect the results that determined these steps.  
 
-![Selecting a top number of relevant tags](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/images/9EDA_relevance_rank.png)
+![Genome_subset_tags](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/Genome_subset_tags.png)
 
 
 |   relevance_rank |   median_relevance |       diff |
