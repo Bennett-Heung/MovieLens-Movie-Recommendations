@@ -52,71 +52,27 @@ The following process the clean data are from the **'01_Data_Preparation'** note
 * Some movies have missing tags in `tags.csv`, which were replaced with ''. 
 * Timestamps in `ratings.csv` and `tags.csv` were dropped as they were not found to be relevant for the next steps. 
 
+
 # Exploratory Data Analysis (EDA)
-Part 1 of the EDA is focused on the `movies.csv` and `ratings.csv` data files; and Part 2 incorporates the `genome-scores.csv` data file on tag analysis.
+The EDA is focused on the `movies.csv`, `ratings.csv` and `genome-scores.csv` data.
 
 
-## Part 1
 
 
-![EDA_genre_count](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/EDA_genre_count.png)
-
-**Finding 1**
-* Drama and Comedy are the most common genres found, followed by Thriller, Romance and Action. 
 
 
-![EDA_genre_year_count](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/EDA_genre_year_count.png)
 
-**Finding 2**
-* As well as the abundance and growth in Drama and Comedy movies, there has also been significant growth of Thriller and Documentary movies in the last 30 years. 
+# Baseline Recommendations 
+The (content-based) baseline recommendation system returns the most and highly rated movies for each genre, with the option to set a release year range on the movie recommendations. 
 
-
-![EDA_year_count](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/EDA_year_count.png)
-
-**Finding 3**
-* The number of movies have increased at an increasing rate over time. Note that the last dip is due to the incomplete year of 2018 in the data.
-
-![EDA_year_genre](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/EDA_year_genre.png)
-
-**Finding 4**
-* The boxplot of each genre's distribution of ratings show higher median ratings for Drama, Crime, War, Mystery, Animation, IMAX, Film-Noir and Documentary movies, while Horror and (no genres listed) show a more likely tendency of lower ratings. The average ratings, as shown by the bar plot of average ratings for each genre, reflect these findings also. 
-
-
-![EDA_rating_year_genre](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/EDA_rating_year_genre.png)
-
-**Finding 5**
-* An upward trend in average ratings is noticed for movies released over the earlier half the twentieth century, and have marginally declined onwards for movies released later. 
-* Post 1910, there are more noticeable average ratings across genres falling under the overall average ratings, particularly between 1920 and 1960. Post 1960, average ratings across genres have converged with the marginal overall decline in average ratings. 
-
-
-## Part 2
-
-![EDA_genre_genome_corr](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/EDA_genre_genome_corr.png)
-
-**Finding 1**
-* The most correlated genre pairs (in order) are: Mystery and Thriller, Drama and (no genre listed), Fantasy and Adventure, and Crime and Thriller. 
-* The most correlated genres are Drama, Adventure and Thriller.  
-
-![EDA_genre_relevance](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/EDA_genre_relevance.png)
-
-**Finding 2**
-* Relevances do not vary significantly across each genre - relevance of tags are approximately spread evenly across genres. 
-
-**Finding 3**
-* The level of relevance for higher ranks of a tag is significantly higher than tags in the lower end of relevance, which are likely to not provide much information about movies. 
-
-
-# 02_Baseline - Baseline Recommendations 
-The (content-based) baseline recommendation system is built by returning the most and highly rated movies for each genre, with the option of movie recommendations set between a year of release range. 
-
-The feature engineering process included: 
-* Collecting to total number of ratings and average rating of each movie in `ratings.csv`. 
-* Coverting movie year of release (year) from string into numbers 
+The feature engineering process involved: 
+* Collecting the total number of ratings and average rating of each movie in `ratings.csv` 
+* Converting movie year of release (year) from string into numbers 
 * Sorting the number of ratings, followed by each movie's average rating for the dataframe of recommendations. 
 
-Two examples of the baseline recommendation results are below: 
+Two examples of the baseline recommendation results are below. 
 
-## Example 1. Top 15 recommendations across the dataset for all genres based o nthe number of ratings and average rating for each movie.  
+## Example 1. Top 15 recommendations for all genres based on the number of ratings and average rating for each movie.  
 
 |      |   movieId | title                                                                   | genres                                                      |   year |   no_of_ratings |   avg_ratings |
 |-----:|----------:|:------------------------------------------------------------------------|:------------------------------------------------------------|-------:|----------------:|--------------:|
@@ -161,7 +117,7 @@ Two examples of the baseline recommendation results are below:
 This content-based filtering recommendation system tailors movie recommendations with similar genres based on a user's list of movie titles, ratings and genres of movies that the user has seen. 
 
 The feature engineering process included: 
-* One-hot-encoding each genre from a list of genres for each movie in the `movies.csv`. 
+* One-hot-encoding each genre from a list of genres for each movie in the `movies.csv` 
 * Create a user profile based on the user inputs of user ratings for each movie the user has seen. 
 
 For example, if a user has provided the following inputs: 
@@ -195,9 +151,7 @@ The user profile is based on the dot product of these ratings with the one-hot-e
 | (no genres listed) |              0 |
 
 
-The recommendation scores are weighted sum of ratings, which are ordered to determine the movies to recommend based on a user's inputs. 
-
-The weighted sum of ratings are calculated from the dot product of the user profile (see example above) and the genres that are one-hot-encoded; and divided by the sum of the user profile (from the example above, 30). These are the **recommendation scores** for each movie in the data, which is sorted from 1 - movies that are to be most recommended based on the user inputs, and 0 - the movies to least recommend to the user. 
+The recommendation scores are weighted sum of ratings, where the movies with the highest weighted sum of ratings recommended. The weighted sum of ratings are calculated by: i) the dot product of the user profile (see example above) and the genres that are one-hot-encoded; and ii) dividing by the sum of the user profile (from the example above, 30). In detail, the **recommendation scores** for each movie are sorted from 1 - movies that are to be most recommended based on the user inputs to 0 - the movies to least recommend to the user. 
 
 From the example above, the top 20 movies recommendations based on the user inputs (shown earlier) are below: 
 
@@ -227,13 +181,13 @@ From the example above, the top 20 movies recommendations based on the user inpu
 
 # Recommendations based on Genome data 
 
-This content-based filtering movie recommendaiton system is based on the relevance of the Genome tags assigned to each movie. Movie recommendations provided by a user providing a movie they watched only, rather than a list of movies and ratings they provided like earlier. 
+This content-based filtering movie recommendaiton system is based on the relevance of the Genome tags assigned to each movie. Movie recommendations are given for a user providing a movie they watched, rather than a list of movies and ratings they provided. 
 
-The movie recommendations are based on using the Genome data files - `genome-scores.csv` and `genome-tags.csv`. Note not all movies will be recommended: 23% of movies in Genome data are in `movies.csv`.
+The movie recommendations are based on movies from the Genome data files - `genome-scores.csv` and `genome-tags.csv`. Note that not all movies are recommended as these data files make up 23% of movies in the `movies.csv` data file, which contains the full comprehensive list of movies.
 
-The feature engineering process involved distinguishing each movie by selecting only a range of top-ranked relevant tags. The figure below and the median relevnace - given the large range in relevance scores across each ranked tag (in the table below) - were analysed as reach the feature engineering decision here.  
+The feature engineering process involved differentiating movies by a selection of top-ranked relevant tags. To determine the number of tags to consider, a similar to the elbow method on the median relevances were applied to indicate that the 20 most relevant tags were a sensible choice to characterise each movie. The figure and table below reflect the results that determined these steps.  
 
-![Selecting a top number of relevant tags](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/04_Genome_subset_tags.png)
+![Selecting a top number of relevant tags](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/images/9EDA_relevance_rank.png)
 
 
 |   relevance_rank |   median_relevance |       diff |
@@ -264,9 +218,8 @@ The feature engineering process involved distinguishing each movie by selecting 
 |               24 |           0.60575  |  -0.01     |
 |               25 |           0.5965   |  -0.00925  |
 
-The image and table above indicates that not all tags should be considered in for the recommendation system, rather the top number of tags should be to make stark differences between each movie. In reference to the table above, a similar to the elbow method on the median relevances were applied to indicate that the 20 most relevant tags were a sensible choice to characterise each movie. 
 
-For example, a snippet of the 20 most relevant tags for the first five movies in the data file are below:
+For demonstration purposes, a snippet of the 20 most relevant tags for the first five movies in the data file are below:
 
 |    |   movieId | title                       | tag                                                                                                                                                                                                                                                 |
 |---:|----------:|:----------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -276,10 +229,11 @@ For example, a snippet of the 20 most relevant tags for the first five movies in
 |  3 |         4 | Waiting to Exhale           | women, chick flick, girlie movie, romantic, adultery, original, unlikely friendships, relationships, stereotypes, cheating, divorce, feel-good, touching, shallow, love, feel good movie, adaptation, based on a book, friendship, mentor           |
 |  4 |         5 | Father of the Bride Part II | good sequel, sequel, sequels, pregnancy, father daughter relationship, family, comedy, feel-good, original, midlife crisis, parenthood, feel good movie, destiny, funny, touching, too short, wedding, sentimental, predictable, girlie movie       |
 
+The recommendation system is built on assigning these tags to each movie and applying the TF-IDF Vectorizer to build a cosine similarity matrix. This matrix allocate similarity scores for each movie in the Genome data, where the recommendation system reads a movie and the most similar movies, based on the similarity scores, to recommend. 
 
-The recommendation system involves finding the most similar movies based on the top 20 relevant tags. This is done by using a count Vectorizer (rather than a TF-IDF Vectorizer which down-weights some tags) to help build a cosine similarity matrix, which contains similarity scores between 1 and -1 (1 is most positively correlation and -1 is the most negatively correlation) for each movie. With 1,128 Genome tags, 1,125 of these tags were used in this process to develop a cosime similarity matrix with a size of a 13,176 by 13,176 matrix, where 13,176 movies were identified in the Genome data files. 
+In detail, the top 20 relevant tags for each movie are used in a count Vectorizer, rather than a TF-IDF Vectorizer which down-weights some tags. The cosine similarity matrix, which contains similarity scores between 1 and -1, where 1 is the most positive correlation and -1 is the most negative correlation, for each movie. 1,125 of the 1,128 Genome tags were involved in this process to develop a 13,176 by 13,176 cosime similarity matrix, where 13,176 movies were identified in the Genome data files. The recommendation system orders the highest cosine similarity score as the top recommendation, followed by movies that have a smaller cosine similarity score. 
 
-The recommendation system orders the highest cosine similarity score as the top recommendation, followed by movies that have a smaller cosine similarity score. For example, the top 20 recommendations for movie 'Up' are shown below. 
+For example, the top 20 recommendations for movie 'Up' are shown below. 
 
 |       |   movieId | title                             |   similarity |
 |------:|----------:|:----------------------------------|-------------:|
@@ -305,24 +259,26 @@ The recommendation system orders the highest cosine similarity score as the top 
 
 
 # Recommendations based on user ratings 
-This collaborative filtering recommendation system is based on finding similar users (from `ratings.csv`) providing similar user ratings and user inputs that include a user's movie titles and ratings of movies seen. 
+This collaborative filtering recommendation system is based on finding similar users from `ratings.csv` based on user inputs that include a user's movie titles and ratings of movies seen. 
 
 The feature engineering process involved finding the subset of users who have seen at least one of the movies from the user inputs. 
 
-To build this recommendation system, the following steps were undertaken: 
-1. Calculate similarities of users with Pearson's coefficient to find how similar each user is to the user (based on the user input)
-2. Select similar users were found (positively correlated users)
-3. Weighted ratings were calculated from multiplying each user's Pearson's coefficient (weights) by their movie ratings 
-4. Weighted average recommendation scores for each movie were calculated from dividing total sum of weighted ratings by the total sum of weights
-5. The highest weighted average recommendation scores were sorted, followed by the number of ratings counted, as the top recommendations. 
+The following steps were undertaken to build this recommendation system: 
+1. Calculate the similarities of users with Pearson's coefficient 
+2. Select positively correlated (similar) users were found 
+3. Calculate weighted ratings by multiplying each user's Pearson's coefficient (weights) with their movie ratings 
+4. Calculate weighted average recommendation scores for each movie by dividing total sum of weighted ratings with the total sum of weights
+5. The top recommendations were sorted with the highest weighted average recommendation scores, followed by the number of ratings. 
 
-For example., the user inputs include:
+## Example 
+The user inputs include:
 * 'Breakfast Club, The', 4 out of 5 rating
 *  'Finding Nemo', 5 out of 5 rating
 *  'Toy Story', 4.5 out of 5 rating
 *  'Up', 4.5 out of 5 rating
 
-The weighted ratings are calculated by multiplying Pearson coefficients (weights) by ratings for each movie from each similar user (below shows the first five similar users only):
+Weighted ratings were calculated by multiplying Pearson coefficients (weights) by ratings for each movie from each similar user (below shows the first five similar users only):
+
 
 |    |   userId |   pearson_coeff |   movieId |   rating |   weighted_rating |
 |---:|---------:|----------------:|----------:|---------:|------------------:|
@@ -375,18 +331,18 @@ The top 20 recommendations based on the example user's inputs are below.
 
 # Recommendations based on Tags 
 
-This content-based filtering recommendation system is based on the content in the tags for each movie provided by users in the `tags.csv` file. These tags appear to be raw tags, rather than the polished tags in the Genome data files.
+This content-based filtering recommendation system is based on the content in the tags for each movie provided by users in `tags.csv`. These tags were not as polished as tags in the Genome data files.
 
-The feature engineering process follows the filtering out Unique tags in the data cleaning process done earlier. The findings and actions of the feature engineering process is below, involving: 
+The feature engineering process involved: 
 * Removing punctuations 
 * Detecting and translating foreign languages based on the possibility that it uncovers valuable information
-* Tags that are purely digits remain as they are - there is a chance they provide valuable information
-* One-character tags are removed - interpreted as highly unlikely to hold valuable information 
+* Leaving purely digit tags, as they had a chance of holding valuable information
+* Removing one-character tags - they were interpreted as highly unlikely to hold valuable information 
 * Names are converted into one word for building the recommendation system.
 
-Building the recommendation system involved the following steps: 
-* Applying the TF-IDF Vectorizer, rather than the Count Vectorizer as some tags contain words that frequently appear across a large amount of tags and contain insignifcant value.   
-* Building a cosine similarity matrix from the TF-IDF Vectorizer. Note that the cosine similarity scores can be calculated directly using the dot product, given the use of the TF-IDF vectorizer. As a result, Sklearn's linear_kernel() was used instead of cosine_similarities() because it is faster. The cosine similarity matrix is a 45,935 by 45,935 matrix, derived from 43,623 movies in the `tags.csv` data file. 
+The recommendation system was built similarly to the recommendation system using the Genome tags:  
+* Apply the TF-IDF Vectorizer, rather than the Count Vectorizer, as some tags contain words that frequently appear across a large amount of tags and contain insignifcant value. 
+* Building a cosine similarity matrix from the TF-IDF Vectorizer. Note that the cosine similarity scores can be calculated directly using the dot product, given the use of the TF-IDF vectorizer. As a result, *Sklearn's linear_kernel()* was used instead of cosine_similarities() because it is faster. The cosine similarity matrix is a 45,935 by 45,935 matrix, derived from 43,623 movies in the `tags.csv` data file. 
 * The recommendation system is based on inputting a movie and providing the number of top recommendations based on the most similar movies (from the tags), measured by the cosine similaity score (from the cosine similarity matrix). 
 
 For example, the top 20 recommendations for the movie 'Dumbo' from this recommendation system is tabluated below.
@@ -414,9 +370,6 @@ For example, the top 20 recommendations for the movie 'Dumbo' from this recommen
 |  1839 |      2049 | Happiest Millionaire, The                       |     0.430089 |
 
 
-
-
 # Results
 
-
-After experimenting with each recommendation system, **the recommendation system based on `tags.csv` provides the most appropriate results**. These tags strike the most balance between having the least drawback in terms of data limilations and providing recommendations based on a user's inputted preference or taste. Note also that despite the quality of recommendations does come at the cost of requiring a significant amount of RAM to run this recommendation system, relative to the other recommendation systems built here. If memory is the issue for deploying, the altnerative recommendation systems using the **Genome Tags** and the **baseline recommendation system** are also preferable. 
+**The recommendation system based on `tags.csv` provides the most appropriate results after testing**. These tags strike the most balance between having the least drawback in terms of limilations in the amount of data and tailors recommendations based on a user's inputted preference or taste (rather than a baseline set). The quality of recommendations comes at the cost of requiring a significant amount of memory to run. If running out of memory becomes an issue for deployment, recommendation systems using the **Genome Tags** and the **baseline recommendation system** are also preferable altneratives. 
