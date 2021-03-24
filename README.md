@@ -9,12 +9,16 @@ The **'01_Data_Preparation'** notebook involves:
 * Load data 
 * Clean data for other notebooks. 
 
+Notebooks for exploratory data analysis (EDA): 
+* **'02_EDA1'**: notebook containing first part of the exploratory data analysis (EDA)
+* **'03_EDA2'**: notebook containing second part of the exploratory data analysis (EDA)
+
 All notebooks follow up from the data preparation notebook and require to run this notebook. These include feature engineering and building recommendation systems based on a selection of data, as suggested by their notebook names: 
-* **'02_Baseline'**: baseline recommendation system based on the top movies across a selection of genres and overall ratings  
-* **'03_Genres'**: content-based filtering recommendation system based on movie genres from the movies dataset 
-* **'04_Ratings'**: collaborative filtering recommendation system based on ratings from the ratings dataset
-* **'05_Genome'**: content-based filtering recommendation system based on ratings from both Genome datasets
-* **'06_Tags'**: collaborative filtering recommendation system based on ratings from the tags dataset.
+* **'04_Baseline'**: baseline recommendation system based on the top movies across a selection of genres and overall ratings  
+* **'05_Genres'**: content-based filtering recommendation system based on movie genres from the movies dataset 
+* **'06_Ratings'**: collaborative filtering recommendation system based on ratings from the ratings dataset
+* **'07_Genome'**: content-based filtering recommendation system based on ratings from both Genome datasets
+* **'08_Tags'**: collaborative filtering recommendation system based on ratings from the tags dataset.
 
 Appendices are at the end of each notebook for markdown tables as reference. 
 
@@ -39,7 +43,7 @@ The following five data files from this dataset were used for the movie recommen
 * `tags.csv`: contains all tags (tag) for each movie (movieId) each user (userId) has provided, as well as timestamps (timestamp) on the time each tag was made.
 
 
-# '01_Data_Preparation' - Data Cleaning
+# Data Cleaning
 The following process the clean data are from the **'01_Data_Preparation'** notebook. The data cleaning process is to prepare the feature engineering and building of each recommendations system. 
 
 * Duplicate movie titles in `movies.csv` were identified under different movie IDs. Movie IDs of these duplicates were updated to match the unique movie ID across the other data files, and the movie ID of these duplicates in `movies.csv` were removed. 
@@ -47,6 +51,43 @@ The following process the clean data are from the **'01_Data_Preparation'** note
 * Title namnes in `movies.csv`  contained year numbers in them so a separate column was created to separate movie titles and the movie release year. 
 * Some movies have missing tags in `tags.csv`, which were replaced with ''. 
 * Timestamps in `ratings.csv` and `tags.csv` were dropped as they were not found to be relevant for the next steps. 
+
+# Exploratory Data Analysis (EDA)
+Part 1 of the EDA is focused on the `movies.csv` and `ratings.csv` data files; and Part 2 incorporates the `genome-scores.csv` data file on tag analysis.
+
+
+## Part 1
+
+
+**Finding 1**
+* Drama and Comedy are the most common genres found, followed by Thriller, Romance and Action. 
+
+**Finding 2**
+* As well as the abundance and growth in Drama and Comedy movies, there has also been significant growth of Thriller and Documentary movies in the last 30 years. 
+
+**Finding 3**
+* The number of movies have increased at an increasing rate over time. Note that the last dip is due to the incomplete year of 2018 in the data.
+
+**Finding 4**
+* The boxplot of each genre's distribution of ratings show higher median ratings for Drama, Crime, War, Mystery, Animation, IMAX, Film-Noir and Documentary movies, while Horror and (no genres listed) show a more likely tendency of lower ratings. The average ratings, as shown by the bar plot of average ratings for each genre, reflect these findings also. 
+
+**Findings 5**
+* An upward trend in average ratings is noticed for movies released over the earlier half the twentieth century, and have marginally declined onwards for movies released later. 
+* Post 1910, there are more noticeable average ratings across genres falling under the overall average ratings, particularly between 1920 and 1960. Post 1960, average ratings across genres have converged with the marginal overall decline in average ratings. 
+
+
+## Part 2
+
+
+**Findings 1**
+* The most correlated genre pairs (in order) are: Mystery and Thriller, Drama and (no genre listed), Fantasy and Adventure, and Crime and Thriller. 
+* The most correlated genres are Drama, Adventure and Thriller.  
+
+**Findings 2**
+* Relevances do not vary significantly across each genre - relevance of tags are approximately spread evenly across genres. 
+
+**Findings 3**
+* The level of relevance for higher ranks of a tag is significantly higher than tags in the lower end of relevance, which are likely to not provide much information about movies. 
 
 
 # 02_Baseline - Baseline Recommendations 
@@ -59,7 +100,7 @@ The feature engineering process included:
 
 Two examples of the baseline recommendation results are below: 
 
-1. Top 15 recommendations across the dataset for all genres based o nthe number of ratings and average rating for each movie.  
+## Example 1. Top 15 recommendations across the dataset for all genres based o nthe number of ratings and average rating for each movie.  
 
 |      |   movieId | title                                                                   | genres                                                      |   year |   no_of_ratings |   avg_ratings |
 |-----:|----------:|:------------------------------------------------------------------------|:------------------------------------------------------------|-------:|----------------:|--------------:|
@@ -79,7 +120,7 @@ Two examples of the baseline recommendation results are below:
 |  583 |       589 | Terminator 2: Judgment Day                                              | ['Action', 'Sci-Fi']                                        |   1991 |           64258 |       3.9415  |
 | 1173 |      1198 | Raiders of the Lost Ark (Indiana Jones and the Raiders of the Lost Ark) | ['Action', 'Adventure']                                     |   1981 |           63505 |       4.12046 |
 
-2. Top 15 comedy and/or romance films between 2005 and 2018 
+## Example 2. Top 15 comedy and/or romance films between 2005 and 2018 
 
 |       |   movieId | title                                                                               | genres                                                               |   year |   no_of_ratings |   avg_ratings |
 |------:|----------:|:------------------------------------------------------------------------------------|:---------------------------------------------------------------------|-------:|----------------:|--------------:|
@@ -100,7 +141,7 @@ Two examples of the baseline recommendation results are below:
 | 10166 |     33679 | Mr. & Mrs. Smith                                                                    | ['Action', 'Adventure', 'Comedy', 'Romance']                         |   2005 |           13324 |       3.24058 |
 
 
-# 03_Genres - Recommendations based on movie genres
+# Recommendations based on movie genres
 This content-based filtering recommendation system tailors movie recommendations with similar genres based on a user's list of movie titles, ratings and genres of movies that the user has seen. 
 
 The feature engineering process included: 
@@ -168,7 +209,7 @@ From the example above, the top 20 movies recommendations based on the user inpu
 | 19 |    127341 | Longshot                                                     |                       1 |
 
 
-# 04_Genome - Recommendations based on Genome data 
+# Recommendations based on Genome data 
 
 This content-based filtering movie recommendaiton system is based on the relevance of the Genome tags assigned to each movie. Movie recommendations provided by a user providing a movie they watched only, rather than a list of movies and ratings they provided like earlier. 
 
@@ -247,7 +288,7 @@ The recommendation system orders the highest cosine similarity score as the top 
 | 11699 |    109425 | Dug's Special Mission             |     0.633556 |
 
 
-# 05_Ratings - Recommendations based on user ratings 
+# Recommendations based on user ratings 
 This collaborative filtering recommendation system is based on finding similar users (from `ratings.csv`) providing similar user ratings and user inputs that include a user's movie titles and ratings of movies seen. 
 
 The feature engineering process involved finding the subset of users who have seen at least one of the movies from the user inputs. 
@@ -265,7 +306,7 @@ For example., the user inputs include:
 *  'Toy Story', 4.5 out of 5 rating
 *  'Up', 4.5 out of 5 rating
 
-The weighted ratings are calculated by multiplying Pearson coefficients (weights) by ratings for each movie from each similar user (below shows the first five similar users only): 
+The weighted ratings are calculated by multiplying Pearson coefficients (weights) by ratings for each movie from each similar user (below shows the first five similar users only):
 
 |    |   userId |   pearson_coeff |   movieId |   rating |   weighted_rating |
 |---:|---------:|----------------:|----------:|---------:|------------------:|
@@ -275,7 +316,10 @@ The weighted ratings are calculated by multiplying Pearson coefficients (weights
 |  3 |      134 |        0.852803 |        12 |        3 |           2.55841 |
 |  4 |      134 |        0.852803 |        18 |        4 |           3.41121 |
 
-The sum total of weights (Pearson coefficients) and sum total of weighted ratings to cacluate the weighted average recommendation score from this example, (below are the first five similar users only) are: 
+
+Calcuate the weighted average recommendation score using the sum total of weights (Pearson coefficients) and sum total of weighted ratings. 
+From this example, the first five similar users only are below. 
+
 
 |    |   movieId |   sum_of_coefficients |   sum_of_weighted_ratings |   weighted_avg_recommendation_score |
 |---:|----------:|----------------------:|--------------------------:|------------------------------------:|
@@ -285,7 +329,9 @@ The sum total of weights (Pearson coefficients) and sum total of weighted rating
 |  3 |         4 |               31.6491 |                   81.6372 |                             2.57945 |
 |  4 |         5 |              198.361  |                  560.094  |                             2.82361 |
 
-The top 20 recommendations based on the example user's inputs are below: 
+
+The top 20 recommendations based on the example user's inputs are below. 
+
 
 |    |   movieId | title                                                                    |   weighted_avg_recommendation_score |   rating |
 |---:|----------:|:-------------------------------------------------------------------------|------------------------------------:|---------:|
@@ -311,7 +357,7 @@ The top 20 recommendations based on the example user's inputs are below:
 | 24 |     57778 | Future by Design                                                         |                                   5 |        9 |
 
 
-# 06_Tags - Recommendations based on Tags 
+# Recommendations based on Tags 
 
 This content-based filtering recommendation system is based on the content in the tags for each movie provided by users in the `tags.csv` file. These tags appear to be raw tags, rather than the polished tags in the Genome data files.
 
@@ -322,7 +368,7 @@ The feature engineering process follows the filtering out Unique tags in the dat
 * One-character tags are removed - interpreted as highly unlikely to hold valuable information 
 * Names are converted into one word for building the recommendation system.
 
-Building the recommendation system ivolved the following steps: 
+Building the recommendation system involved the following steps: 
 * Applying the TF-IDF Vectorizer, rather than the Count Vectorizer as some tags contain words that frequently appear across a large amount of tags and contain insignifcant value.   
 * Building a cosine similarity matrix from the TF-IDF Vectorizer. Note that the cosine similarity scores can be calculated directly using the dot product, given the use of the TF-IDF vectorizer. As a result, Sklearn's linear_kernel() was used instead of cosine_similarities() because it is faster. The cosine similarity matrix is a 45,935 by 45,935 matrix, derived from 43,623 movies in the `tags.csv` data file. 
 * The recommendation system is based on inputting a movie and providing the number of top recommendations based on the most similar movies (from the tags), measured by the cosine similaity score (from the cosine similarity matrix). 
