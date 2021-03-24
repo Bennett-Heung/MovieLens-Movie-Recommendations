@@ -59,34 +59,50 @@ Part 1 of the EDA is focused on the `movies.csv` and `ratings.csv` data files; a
 ## Part 1
 
 
+![EDA_genre_count](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/EDA_genre_count.png)
+
 **Finding 1**
 * Drama and Comedy are the most common genres found, followed by Thriller, Romance and Action. 
+
+
+![EDA_genre_year_count](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/EDA_genre_year_count.png)
 
 **Finding 2**
 * As well as the abundance and growth in Drama and Comedy movies, there has also been significant growth of Thriller and Documentary movies in the last 30 years. 
 
+
+![EDA_year_count](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/EDA_year_count.png)
+
 **Finding 3**
 * The number of movies have increased at an increasing rate over time. Note that the last dip is due to the incomplete year of 2018 in the data.
+
+![EDA_year_genre](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/EDA_year_genre.png)
 
 **Finding 4**
 * The boxplot of each genre's distribution of ratings show higher median ratings for Drama, Crime, War, Mystery, Animation, IMAX, Film-Noir and Documentary movies, while Horror and (no genres listed) show a more likely tendency of lower ratings. The average ratings, as shown by the bar plot of average ratings for each genre, reflect these findings also. 
 
-**Findings 5**
+
+![EDA_rating_year_genre](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/EDA_rating_year_genre.png)
+
+**Finding 5**
 * An upward trend in average ratings is noticed for movies released over the earlier half the twentieth century, and have marginally declined onwards for movies released later. 
 * Post 1910, there are more noticeable average ratings across genres falling under the overall average ratings, particularly between 1920 and 1960. Post 1960, average ratings across genres have converged with the marginal overall decline in average ratings. 
 
 
 ## Part 2
 
+![EDA_genre_genome_corr](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/EDA_genre_genome_corr.png)
 
-**Findings 1**
+**Finding 1**
 * The most correlated genre pairs (in order) are: Mystery and Thriller, Drama and (no genre listed), Fantasy and Adventure, and Crime and Thriller. 
 * The most correlated genres are Drama, Adventure and Thriller.  
 
-**Findings 2**
+![EDA_genre_relevance](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/EDA_genre_relevance.png)
+
+**Finding 2**
 * Relevances do not vary significantly across each genre - relevance of tags are approximately spread evenly across genres. 
 
-**Findings 3**
+**Finding 3**
 * The level of relevance for higher ranks of a tag is significantly higher than tags in the lower end of relevance, which are likely to not provide much information about movies. 
 
 
