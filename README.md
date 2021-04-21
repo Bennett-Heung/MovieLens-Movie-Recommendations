@@ -114,9 +114,11 @@ Film-Noir and War movies have the highest average rating; and Horror and '(no ge
 | 19 | Western            | Drama              |     0.874093 |
 
 **Finding 7**
+* If two genres are (positively) correlated with each other, a viewer who prefers watching one genre is likely to watch another genre. 
+* Each tag from the genome_scores.csv file has a  'relevance' measure assigned to each movie. The measure is between 0 and 1; if a 'relevance' for a tag is closer to 1, then the tag is more likely associated to describe the movie. 
 * The most correlated genre pairs (in order) are: Mystery and Thriller, Drama and (no genre listed), Fantasy and Adventure, and Crime and Thriller.
 * The most correlated genres are Drama, Adventure and Thriller.
-* Drama is one of the most popular genres that has grown most in the last few years, which could imply the growing demand from viewers to watch drama. 
+* Drama is one of the most popular genres that has grown most in the last few years. This implies more demand of viewers to watch drama, and potentially that viewers would be recommended more movies with drama. This could also indicate the industry producing more drama, which adds on to greater growth in the genre. (Note that the genres are not mutually exclusive).
 
 ![8EDA_genre_relevance](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/8EDA_genre_relevance.png)
 
