@@ -250,7 +250,7 @@ From the example above, the top 20 movies recommendations based on the user inpu
 
 # Recommendations based on Genome data 
 
-This content-based filtering movie recommendaiton system is based on the relevance of the Genome tags assigned to each movie. Movie recommendations are given for a user providing a movie they watched, rather than a list of movies and ratings they provided. 
+This content-based filtering movie recommendation system is based on the relevance of the Genome tags assigned to each movie. Movie recommendations are given for a user providing a movie they watched, rather than a list of movies and ratings they provided. 
 
 The movie recommendations are based on movies from the Genome data files - `genome-scores.csv` and `genome-tags.csv`. Note that not all movies are recommended as these data files make up 23% of movies in the `movies.csv` data file, which contains the full comprehensive list of movies.
 
