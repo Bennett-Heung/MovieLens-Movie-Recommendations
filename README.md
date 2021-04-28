@@ -48,7 +48,7 @@ The following process the clean data are from the **'01_Data_Preparation'** note
 
 * Duplicate movie titles in `movies.csv` were identified under different movie IDs. Movie IDs of these duplicates were updated to match the unique movie ID across the other data files, and the movie ID of these duplicates in `movies.csv` were removed. 
 * Found not all movies in `movies.csv` were found in the other datasets - no actions were taken, rather this as an observation that some recommendation systems made here do not consider the full list of movies in `movies.csv` due to their reliance on the other data files.
-* Title namnes in `movies.csv`  contained year numbers in them so a separate column was created to separate movie titles and the movie release year. 
+* Title names in `movies.csv`  contained year numbers in them so a separate column was created to separate movie titles and the movie release year. 
 * Some movies have missing tags in `tags.csv`, which were replaced with ''. 
 * Timestamps in `ratings.csv` and `tags.csv` were dropped as they were not found to be relevant for the next steps. 
 
