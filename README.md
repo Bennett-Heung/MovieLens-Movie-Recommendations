@@ -38,7 +38,7 @@ Note that the two files from the dataset used were `movies.csv`, which contains 
 
 # Exploratory Data Analysis (EDA)
 
-![1EDA_genre_count](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/1EDA_genre_count.png)
+![plot1](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/plot1.png)
 
 **Finding 1**
 Drama and Comedy are the most common genres found, followed by Thriller, Romance and Action.
