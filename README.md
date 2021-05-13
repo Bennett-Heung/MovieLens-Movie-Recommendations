@@ -80,3 +80,21 @@ Examples of two types of recommendation systems were built here, excluding hybri
         * User-based: finds similar users to predict ratings of each users' unseen movies based on historical ratings
         * Item-based: finds similar items based on historical user ratings to predict unseen movie ratings for each user
     * *Model-based*: installed the Surprise package to apply the SVD, KNNBasic and KNNWithMeans algorithms to predict unseen movie ratings for each user.
+
+# Results
+
+*Content-based*
+* Using genres only to develop content-based recommendations do not indicate a relatively high MAP@k. There was a bias to recommend movies associated with more genres listed. The recommeder could be improved by adding more attributes, such as movie cast names, directors and movie tags. 
+
+*Recommenders built from scratch*
+* The user-based recommender performed better than the item-based recommender. 
+* This could be due to various reasons: 
+    * There were less users than movies in the data 
+    * User similarities were more distinguishable than item similarities; user similarities ranged between -1 and 1, while item similarities ranged between 0 and 1
+    * The item-based recommender predicted a significant amount of zero ratings, overlooking a larger variety of movies to recommend
+
+*Model-based recommenders*
+* Performed better than recommenders built from scratch. This is likely due to the algorithms selecting only a number of user/item similarities rather than applying all users/items during computation. Given the sparsity in the user-item matrix, it is likely most users/items show insignificant levels of similarities. 
+* The MAP@K, where K = 10, shows **item-item collaborative filtering using KNNBasic** performed the best on the test set, and marginally better than the other algorithms. 
+
+![mapk](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/mapk.png)
