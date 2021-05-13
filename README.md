@@ -1,60 +1,42 @@
 # MovieLens-Movie-Recommendations
-Provide movie recommendations using MovieLens data. 
+Movie recommendation systems using MovieLens data. 
 
-# File Structure 
+# Notebook Structure 
 
-The **'01_Data_Preparation'** notebook involves: 
-* Setting up installations 
-* Importing a collection of libraries across all notebooks
-* Load data 
-* Clean data for other notebooks. 
+**1. Setup** - importing libraries and functions
 
-Notebooks for exploratory data analysis (EDA): 
-* **'02_EDA1'**: notebook containing first part of the exploratory data analysis (EDA)
-* **'03_EDA2'**: notebook containing second part of the exploratory data analysis (EDA)
+**2. Load Data** - loading datasets
 
-All notebooks follow up from the data preparation notebook and require to run this notebook. These include feature engineering and building recommendation systems based on a selection of data, as suggested by their notebook names: 
-* **'04_Baseline'**: baseline recommendation system based on the top movies across a selection of genres and overall ratings  
-* **'05_Genres'**: content-based filtering recommendation system based on movie genres from the movies dataset 
-* **'06_Ratings'**: collaborative filtering recommendation system based on ratings from the ratings dataset
-* **'07_Genome'**: content-based filtering recommendation system based on ratings from both Genome datasets
-* **'08_Tags'**: collaborative filtering recommendation system based on ratings from the tags dataset.
+**3. Clean Data** - removing duplicates 
 
-Appendices are at the end of each notebook for markdown tables as reference. 
+**4. Exploratory Data Analysis (EDA)** - data visualisations
+
+**5. Data Preparation** - preparing data for modelling purposes
+
+**6. Modelling** - built models on the training set
+
+**7. Evaluation** - evaluate models with MAP@k using the test set 
 
 
 # Purpose
 
+## Purpose
+
 There are so many movies and online information about them to help viewers decide what to watch. With an overwhelming amount of information, it can be challenging for people to decide and watch a movie that they would enjoy. Recommendation systems are developed to help resolve this issue by providing movie recommendations. 
 
-The following notebooks encode various recommendation systems using information provided by [MovieLens](http://movielens.org). Firstly, a baseline recommendation system is built on the basis of top movies from a selection of genres and their overall ratings. This recommendation system can be effective to recommend movies, although it is not designed to tailor recommendations from a user's preferences and tastes. Thus, content-based (genres and Genome tags) and collaborative (user ratings and user tags) filtering recommendation systems were developed in the concept to cater more specific movie recommendations to each viewer. Note that there are pros (for example, more tailored to a user's preferences than the baseline) and cons (for example, sparse matrices) of each type of recommendation system, and with the amount of information here, play as a key factor of the quality in movie recommendations for a viewer. 
+The following notebooks encode various recommendation systems using information provided by the latest and smallest dataset from [MovieLens](https://grouplens.org/datasets/movielens/). The selected content-based and collaborative filtering recommendation systems were chosen with respect to evaluating them appropriately across the same metric, the **mean average precision at k (MAP@k)**. 
 
-
-# Quick summary about the data
-The raw data was not uploaded to Github following the Usage License quote: "The user may not redistribute the data without separate permission."
-
-The dataset describes 5-star rating and free-text tagging activity from [MovieLens](http://movielens.org), a movie recommendation service. It contains 27753444 ratings and 1108997 tag applications across 58098 movies. These data were created by 283228 users between January 09, 1995 and September 26, 2018. This dataset was generated on September 26, 2018.
-
-The following five data files from this dataset were used for the movie recommendations: 
-* `genome-scores.csv`: from Tag Genome, which is a data structure containing tag relevance scores for movies. There are 1,128 tags (tagId), with a relevance tag value (relevance) between 0 and 1 in terms of relative relevance of each tag for each movie by ID (movieId). 
-* `genome-tags.csv`: from Tag Genome, which only includes references to the tag descriptions (tag) in correspondence to the tag IDs (tagId) in `genome-scores.csv`. 
-* `movies.csv`: contains movie IDs (movieId), movie titles (title) and movie genres (genres) for each movie. 
-* `ratings.csv`: contains ratings (rating) for each movie (movieId) each user (userId) has provided, as well as timestamps (timestamp) on the time ratings were made. 
-* `tags.csv`: contains all tags (tag) for each movie (movieId) each user (userId) has provided, as well as timestamps (timestamp) on the time each tag was made.
+Note that the two files from the dataset used were `movies.csv`, which contains each movie's name, ID and list of genres, and `ratings.csv`, which contains each user's rating from movies they have seen by their ID. 
 
 
 # Data Cleaning
-The following process the clean data are from the **'01_Data_Preparation'** notebook. The data cleaning process is to prepare the feature engineering and building of each recommendations system. 
 
-* Duplicate movie titles in `movies.csv` were identified under different movie IDs. Movie IDs of these duplicates were updated to match the unique movie ID across the other data files, and the movie ID of these duplicates in `movies.csv` were removed. 
-* Found not all movies in `movies.csv` were found in the other datasets - no actions were taken, rather this as an observation that some recommendation systems made here do not consider the full list of movies in `movies.csv` due to their reliance on the other data files.
-* Title names in `movies.csv`  contained year numbers in them so a separate column was created to separate movie titles and the movie release year. 
-* Some movies have missing tags in `tags.csv`, which were replaced with ''. 
-* Timestamps in `ratings.csv` and `tags.csv` were dropped as they were not found to be relevant for the next steps. 
+* Duplicate movie titles in `movies.csv` were identified under different movie IDs. Movie IDs of these duplicates were updated to match the unique movie ID across the data files, and the movie ID of these duplicates in `movies.csv` were removed. 
+* Found not all movies in `movies.csv` were rated in `ratings.csv`. 
+* Timestamps in 'ratings' were irrelevant for our purposes and were dropped.
 
 
 # Exploratory Data Analysis (EDA)
-The EDA is focused on the `movies.csv`, `ratings.csv` and `genome-scores.csv` data.
 
 ![1EDA_genre_count](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/1EDA_genre_count.png)
 
