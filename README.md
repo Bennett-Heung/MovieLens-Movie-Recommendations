@@ -38,39 +38,36 @@ Note that the two files from the dataset used were `movies.csv`, which contains 
 
 # Exploratory Data Analysis (EDA)
 
-![plot1](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/plot1.png)
-
 **Finding 1**
 Drama and Comedy are the most common genres found, followed by Thriller, Romance and Action.
-
-![2EDA_year_count](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/2EDA_year_count.png)
+![plot1](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/plot1.png)
 
 **Finding 2**
 The number of movies have increased at an increasing rate over time. Note that the last dip is due to the incomplete year of 2018 in the data.
-
-![3EDA_genre_year_count](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/3EDA_genre_year_count.png)
+![plot2](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/plot2.png)
 
 **Finding 3**
-As well as the abundance and growth in Drama and Comedy movies, there has also been significant growth of Thriller and Documentary movies in the last 30 years.
-
-![4EDA_year_genre](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/4EDA_year_genre.png)
+Ratings range from 0.5 to 5 out of 5. It is a bimodal distribution with 3 and 4 out of 5 ratings as the most frequent; and an average rating of 3.5 out of 5.   
+![plot3](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/plot3.png)
 
 **Finding 4**
-The boxplot of each genre's distribution of ratings show higher median ratings for Drama, Crime, War, Mystery, Animation, IMAX, Film-Noir and Documentary movies, while Horror and (no genres listed) show a more likely tendency of lower ratings. The average ratings, as shown by the bar plot of average ratings for each genre, reflect these findings also.
-
-![5EDA_rating_genre](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/5EDA_rating_genre.png)
+As well as the abundance and growth in Drama and Comedy movies, there has also been significant growth of Thriller and Documentary movies in the last 30 years.
+![plot4](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/plot4.png)
 
 **Finding 5**
-Film-Noir and War movies have the highest average rating; and Horror and '(no genres listed)' genres have the lowest average rating.
-
-![6EDA_rating_year_genre](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/6EDA_rating_year_genre.png)
+The boxplot of each genre's distribution of ratings show higher median ratings for Drama, Crime, War, Mystery, Animation, IMAX, Film-Noir and Documentary movies, while Horror and (no genres listed) show a more likely tendency of lower ratings. The average ratings, as shown by the bar plot of average ratings for each genre, reflect these findings also.
+![plot5](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/plot5.png)
 
 **Finding 6**
+Film-Noir and War movies have the highest average rating; and Horror and '(no genres listed)' genres have the lowest average rating.
+![plot6](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/plot6.png)
+
+
+**Finding 7**
 * An upward trend in average ratings is noticed for movies released over the earlier half the twentieth century, and have marginally declined onwards for movies released later.
 
 * Post 1910, there are more noticeable average ratings across genres falling under the overall average ratings, particularly between 1920 and 1960. Post 1960, average ratings across genres have converged with the marginal overall decline in average ratings.
-
-![7EDA_genre_genome_corr](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/7EDA_genre_genome_corr.png)
+![plot7](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/plot7.png)
 
 |    | genre              | most_corr_genre    |   corr_value |
 |---:|:-------------------|:-------------------|-------------:|
