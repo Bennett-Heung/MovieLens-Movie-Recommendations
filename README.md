@@ -1,6 +1,14 @@
 # MovieLens-Movie-Recommendations
 Movie recommendation systems using MovieLens data. 
 
+## Purpose
+
+There are so many movies and online information about them to help viewers decide what to watch. With an overwhelming amount of information, it can be challenging for people to decide and watch a movie that they would enjoy. Recommendation systems are developed to help resolve this issue by providing movie recommendations. 
+
+The following notebooks encode various recommendation systems using information provided by the latest and smallest dataset from [MovieLens](https://grouplens.org/datasets/movielens/). The selected content-based and collaborative filtering recommendation systems were chosen with respect to evaluating them appropriately across the same metric, the **mean average precision at k (MAP@k)**. 
+
+Note that the two files from the dataset used were `movies.csv`, which contains each movie's name, ID and list of genres, and `ratings.csv`, which contains each user's rating from movies they have seen by their ID. 
+
 # Notebook Structure 
 
 ### Notebook 1: Introduction 
@@ -30,15 +38,6 @@ Movie recommendation systems using MovieLens data.
 **7. Evaluation** - evaluate models with MAP@k using the test set 
 
 **8. Conclusion** - conclusive remarks
-
-
-## Purpose
-
-There are so many movies and online information about them to help viewers decide what to watch. With an overwhelming amount of information, it can be challenging for people to decide and watch a movie that they would enjoy. Recommendation systems are developed to help resolve this issue by providing movie recommendations. 
-
-The following notebooks encode various recommendation systems using information provided by the latest and smallest dataset from [MovieLens](https://grouplens.org/datasets/movielens/). The selected content-based and collaborative filtering recommendation systems were chosen with respect to evaluating them appropriately across the same metric, the **mean average precision at k (MAP@k)**. 
-
-Note that the two files from the dataset used were `movies.csv`, which contains each movie's name, ID and list of genres, and `ratings.csv`, which contains each user's rating from movies they have seen by their ID. 
 
 
 # Data Cleaning
