@@ -58,7 +58,7 @@ Film-Noir and War movies have the highest average rating; and Horror and '(no ge
 ![plot7](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/plot7.png)
 
 # Modelling
-Examples of two types of recommendation systems were built here, excluding hybrid recommendation systems.  
+Examples of two types of recommendation systems were built here.  
 
 1. **Content-based filtering**: using item attributes to make recommendations - built one from scratch using movie genre information
 
