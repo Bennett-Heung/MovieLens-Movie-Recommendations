@@ -8,6 +8,7 @@ Movie recommendation systems using MovieLens data.
 * `04_Data_Preparation.ipynb` - preparing data for modelling purposes
 * `05_Modelling.ipynb` - built recommendation systems with the training set
 * `06_Evaluation.ipynb` - evaluate recommendation systems models with MAP@k using the test set; and includes conclusive remarks.
+* `Movie Recommendation Systems.ipynb` - comprehensive notebook containing all notebooks above in chronological order.
 
 ## Purpose
 
