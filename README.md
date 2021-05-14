@@ -3,22 +3,34 @@ Movie recommendation systems using MovieLens data.
 
 # Notebook Structure 
 
+### Notebook 1: Introduction 
+
+### Notebook 2: Initial Setup
+
 **1. Setup** - importing libraries and functions
 
 **2. Load Data** - loading datasets
 
 **3. Clean Data** - removing duplicates 
 
+### Notebook 3: Exploratory Data Analysis (EDA)
+
 **4. Exploratory Data Analysis (EDA)** - data visualisations
+
+### Notebook 4: Data Preparation
 
 **5. Data Preparation** - preparing data for modelling purposes
 
+### Notebook 5: Recommendation Systems
+
 **6. Modelling** - built models on the training set
+
+### Notebook 6: Evaluation
 
 **7. Evaluation** - evaluate models with MAP@k using the test set 
 
+**8. Conclusion** - conclusive remarks
 
-# Purpose
 
 ## Purpose
 
