@@ -1,6 +1,14 @@
 # MovieLens-Movie-Recommendations
 Movie recommendation systems using MovieLens data. 
 
+# Notebook Structure 
+* `01_Introduction.ipynb`- Overview of data and content structure
+* `02_Initial_Setup.ipynb` - importing libraries and functions; loading dataset and data cleaning process
+* `03_EDA.ipynb` - Exploratory Data Analysis (EDA); containing data visualisations
+* `04_Data_Preparation.ipynb` - preparing data for modelling purposes
+* `05_Modelling.ipynb` - built recommendation systems with the training set
+* `06_Evaluation.ipynb` - evaluate recommendation systems models with MAP@k using the test set; and includes conclusive remarks.
+
 ## Purpose
 
 There are so many movies and online information about them to help viewers decide what to watch. With an overwhelming amount of information, it can be challenging for people to decide and watch a movie that they would enjoy. Recommendation systems are developed to help resolve this issue by providing movie recommendations. 
@@ -8,37 +16,6 @@ There are so many movies and online information about them to help viewers decid
 The following notebooks encode various recommendation systems using information provided by the latest and smallest dataset from [MovieLens](https://grouplens.org/datasets/movielens/). The selected content-based and collaborative filtering recommendation systems were chosen with respect to evaluating them appropriately across the same metric, the **mean average precision at k (MAP@k)**. 
 
 Note that the two files from the dataset used were `movies.csv`, which contains each movie's name, ID and list of genres, and `ratings.csv`, which contains each user's rating from movies they have seen by their ID. 
-
-# Notebook Structure 
-
-### Notebook 1: Introduction 
-
-### Notebook 2: Initial Setup
-
-**1. Setup** - importing libraries and functions
-
-**2. Load Data** - loading datasets
-
-**3. Clean Data** - removing duplicates 
-
-### Notebook 3: Exploratory Data Analysis (EDA)
-
-**4. Exploratory Data Analysis (EDA)** - data visualisations
-
-### Notebook 4: Data Preparation
-
-**5. Data Preparation** - preparing data for modelling purposes
-
-### Notebook 5: Recommendation Systems
-
-**6. Modelling** - built models on the training set
-
-### Notebook 6: Evaluation
-
-**7. Evaluation** - evaluate models with MAP@k using the test set 
-
-**8. Conclusion** - conclusive remarks
-
 
 # Data Cleaning
 
@@ -109,3 +86,9 @@ Examples of two types of recommendation systems were built here, excluding hybri
 * The MAP@K, where K = 10, shows **item-item collaborative filtering using KNNBasic** performed the best on the test set, and marginally better than the other algorithms. 
 
 ![mapk](https://github.com/Bennett-Heung/MovieLens-Movie-Recommendations/blob/main/images/mapk.png)
+
+
+# Conclusive Remarks
+
+* The Surprise algorithms performed better and had a quicker execution time than the recommenders built from scratch.
+* The MAP@K, where K = 10, shows item-item collaborative filtering using KNNBasic performed the best on the test set, and marginally better than the other algorithms.
